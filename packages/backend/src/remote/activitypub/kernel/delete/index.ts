@@ -39,10 +39,14 @@ export default async (actor: IRemoteUser, activity: IDelete): Promise<string> =>
 		formarType = 'Note';
 	}
 
+	// 削除アクティビティーを無視します。
+	// 他のインスタンスの迷惑になるため、アクセスできるIPアドレスに制限を施して自分以外のインスタンスと連合させないようにしてください。
 	if (validPost.includes(formarType)) {
-		return await deleteNote(actor, uri);
+		// return await deleteNote(actor, uri);
+		return 'ok: deleting note ignored.';
 	} else if (validActor.includes(formarType)) {
-		return await deleteActor(actor, uri);
+		// return await deleteActor(actor, uri);
+		return 'ok: deleting actor ignored.';
 	} else {
 		return `Unknown type ${formarType}`;
 	}
