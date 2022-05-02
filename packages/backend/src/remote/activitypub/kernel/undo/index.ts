@@ -29,7 +29,9 @@ export default async (actor: IRemoteUser, activity: IUndo): Promise<string> => {
 	if (isFollow(object)) return await unfollow(actor, object);
 	if (isBlock(object)) return await unblock(actor, object);
 	if (isLike(object)) return await undoLike(actor, object);
-	if (isAnnounce(object)) return await undoAnnounce(actor, object);
+	// リノートの取り消しを無視します。
+	// if (isAnnounce(object)) return await undoAnnounce(actor, object);
+	if (isAnnounce(object)) return 'ok: undoing note ignored.'
 	if (isAccept(object)) return await undoAccept(actor, object);
 
 	return `skip: unknown object type ${getApType(object)}`;
