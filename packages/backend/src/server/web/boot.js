@@ -113,13 +113,14 @@
 	// eslint-disable-next-line no-inner-declarations
 	function renderError(code, details) {
 		document.documentElement.innerHTML = `
-			<h1>⚠エラーが発生しました</h1>
-			<p>問題が解決しない場合は管理者までお問い合わせください。以下のオプションを試すこともできます:</p>
+			<h1>${code === "APP_FETCH_FAILED" ? "🚫アクセス許可が必要です" : "⚠エラーが発生しました"}</h1>
+			<p>以下のオプションを試してください:</p>
 			<ul>
+				<li><a href="/assets">アクセス許可を取得</a>する</li>
 				<li><a href="/cli">簡易クライアント</a>を起動</li>
 				<li><a href="/bios">BIOS</a>で修復を試みる</li>
 				<li><a href="/flush">キャッシュをクリア</a>する</li>
-			</ul>
+				</ul>
 			<hr>
 			<code>ERROR CODE: ${code}</code>
 			<details>
